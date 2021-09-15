@@ -1,19 +1,24 @@
-#pip install keras
-#pip install tensorflow
+# pip install keras
+# pip install tensorflow
 
 from keras.models import load_model
 from PIL import Image, ImageOps
 import numpy as np
 
-# Load the model
+
+# Load the model 모델 읽어오기
 model = load_model('teachable_project\keras_model.h5')
 
 # Create the array of the right shape to feed into the keras model
 # The 'length' or number of images you can put into the array is
 # determined by the first position in the shape tuple, in this case 1.
+#행렬로 데이터를 처리
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+
 # Replace this with the path to your image
+#모델에 집어넣어서 판독
 image = Image.open('teachable_project\img구글2.jpg')
+
 #resize the image to a 224x224 with the same strategy as in TM2:
 #resizing the image to be at least 224x224 and then cropping from the center
 size = (224, 224)
@@ -27,7 +32,11 @@ normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
 data[0] = normalized_image_array
 
 # run the inference
-prediction = model.predict(data)
-print(prediction)
+label_dict = {0: '제트플립1', 1: 'zflip2', 2: 'zflip3'}
 
-#뭐가 문제지?
+prediction = model.predict(data)
+probablity = prediction[0].max()
+label = prediction[0].argmax()
+name = label_dict[label]
+
+
