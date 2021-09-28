@@ -12,19 +12,19 @@ print(f'네이버 이미지 검색에서 {keyword}를 검색하였습니다.')
 
 time.sleep(3)
 
-prev_height = wd.execute_script("return document.body.scrollHeight")
-while True:
-    # 스크롤을 화면 가장 아래로 내린다
-    wd.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-    # 페이지 로딩 대기
-    time.sleep(2)
-    # 현재 문서 높이를 가져와서 저장
-    curr_height = wd.execute_script("return document.body.scrollHeight")
-    print('스크롤을 내리고 있습니다. 잠시 기다려 주세요.')
-    if(curr_height == prev_height):
-        break
-    else:
-        prev_height = wd.execute_script("return document.body.scrollHeight")
+# prev_height = wd.execute_script("return document.body.scrollHeight")
+# while True:
+#     # 스크롤을 화면 가장 아래로 내린다
+#     wd.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+#     # 페이지 로딩 대기
+#     time.sleep(2)
+#     # 현재 문서 높이를 가져와서 저장
+#     curr_height = wd.execute_script("return document.body.scrollHeight")
+#     print('스크롤을 내리고 있습니다. 잠시 기다려 주세요.')
+#     if(curr_height == prev_height):
+#         break
+#     else:
+#         prev_height = wd.execute_script("return document.body.scrollHeight")
 
 images = wd.find_elements_by_xpath('//*[@id="islrg"]/div[1]/div/a[1]/div[1]/img')
 print(images)
