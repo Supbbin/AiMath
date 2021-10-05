@@ -14,4 +14,4 @@ with sr.Microphone() as source:
         text = r.recognize_google(audio, language='ko-KR')
         print('You said : {}'.format(text))
     except:
-        print('Sorry could not recognize yur voice')
+        print('목소리를 인식하지 못했습니다')
